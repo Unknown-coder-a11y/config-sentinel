@@ -12,13 +12,22 @@ class SystemGraphBuilder:
         for svc_name, details in services.items():
             self.graph.add_node(svc_name, type="service", status=details.get("status"))
 
-        # Add socket nodes and link to service processes
+        # Link socket nodes to service processes
         for s in sockets:
             port_node = f"port:{s['port']}"
             proc = s["process"]
             self.graph.add_node(port_node, type="socket")
             
-            if proc in services:
+            # Map process aliases (e.g. sshd -> ssh)
+            matched_svc = proc
+            if proc == "sshd":
+                matched_svc = "ssh"
+
+            if matched_svc in services:
+                self.graph.add_edge(matched_svc, port_node, relation="listens_on")
+            elif proc != "unknown":
+                # Create process node if it's not a tracked systemd service
+                self.graph.add_node(proc, type="process")
                 self.graph.add_edge(proc, port_node, relation="listens_on")
 
         return self.graph

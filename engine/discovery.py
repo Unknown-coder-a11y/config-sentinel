@@ -8,8 +8,8 @@ class SystemDiscoverer:
     def scan_sockets(self):
         sockets = []
         try:
-            # Run 'ss -tulpn' to inspect listening ports
-            res = subprocess.run(["ss", "-tulpn"], capture_output=True, text=True)
+            # Added 'sudo' so Linux exposes process names attached to ports
+            res = subprocess.run(["sudo", "ss", "-tulpn"], capture_output=True, text=True)
             lines = res.stdout.strip().split("\n")[1:]
 
             for line in lines:
@@ -22,7 +22,7 @@ class SystemDiscoverer:
         except Exception as e:
             print(f"[Warning] Socket scan failed: {e}")
         return sockets
-
+    
     def scan_services(self):
         services = {}
         for svc in ["nginx", "ssh"]:
