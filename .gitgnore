@@ -1,0 +1,19 @@
+venv/
+env/
+ENV/
+
+
+__pycache__/
+*.py[cod]
+*$py.class
+
+#IDE files
+#1st 3 lines are python virtual environments
+#starting from __pycache__, its cache files/python byte-compiled
+#IDE files
+.vscode/
+.idea
+
+#Local logs & OS noise
+*.log
+.DS_Store
