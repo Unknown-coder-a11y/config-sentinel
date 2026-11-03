@@ -15,11 +15,17 @@ Quick start
 Requirements: Linux or WSL2, Python 3.10+, Ollama, and sudo access. nginx is optional but needed for the syntax check to succeed.
 
 bash
+
 git clone https://github.com/Unknown-coder-a11y/config-sentinel.git
+
 cd config-sentinel
+
 python -m venv venv && source venv/bin/activate
+
 pip install networkx requests
+
 ollama pull qwen2.5-coder:1.5b
+
 python main.py
 
 You will be prompted for your sudo password: socket scanning (sudo ss) and the nginx syntax check (sudo nginx -t) need root. The target service is currently hardcoded to nginx in main.py.
