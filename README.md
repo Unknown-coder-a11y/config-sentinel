@@ -14,7 +14,6 @@ Quick start
 
 Requirements: Linux or WSL2, Python 3.10+, Ollama, and sudo access. nginx is optional but needed for the syntax check to succeed.
 
-bash
 
 git clone https://github.com/Unknown-coder-a11y/config-sentinel.git
 
