@@ -17,3 +17,11 @@ __pycache__/
 #Local logs & OS noise
 *.log
 .DS_Store
+
+__pycache__/
+*.pyc
+*.swp
+*.swo
+.env
+.configsentinel/
+vnev/
